@@ -29,6 +29,38 @@ circle_object = []
 cross_object = []
 
 #---------------------------------MAIN CODE-------------------------------------
+
+#point and click featuer
+def mouse_pressed() :
+    #every time the user places a new piece
+    #run a check for all pieces with their positions
+    #check if there is a winning move
+    #if there is draw a line in the direction of that winning move
+    #or just change the fill to signify the winning spaces
+    for i in range(len(board)) :
+        for j in range(len(board[0])) :
+            if(board[i][j].contains(mouse_x,mouse_y)) :
+                if(check.counter == 0) :
+                    #create a new piece circle and put it in circle array
+                    #to keep track of how many circles
+                    #and their positions for checking
+                    #circle_array.append(board[i][j])
+                    circle_array.append([board[i][j].x,board[i][j].y])
+                    board[i][j].place("circle")
+                    board[i][j].clicked = True
+                    board[i][j].colour = 200
+                    check.update(1)
+                elif(check.counter == 1) :
+                    #the same goes for cross pieces
+                    #cross_array.append(board[i][j])
+                    cross_array.append([board[i][j].x,board[i][j].y])
+                    board[i][j].place("cross")
+                    board[i][j].colour = 200
+                    check.update(0)
+    print("circle array : ",circle_array)
+    print("cross array : ",cross_array)
+    # print(board)
+
 def setup():
     row = 0
     array = []
