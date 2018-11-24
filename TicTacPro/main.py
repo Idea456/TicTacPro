@@ -16,7 +16,7 @@ column = 0
 
 #check is used to check status of each player's turn
 #it is also used to check how many pieces are in the board
-check = new Check()
+check = Check()
 
 #declare values for x and y
 x = 0
@@ -65,7 +65,10 @@ def draw():
         circle_object.append(board[y][x])
         show_board[x][y] = "O"
         #change turn to cross's turn
+        #2 player
         check.update(1)
+        #one player with bot
+        #check.botMode(board,cross_array,cross_object,"cross")
 
     elif check.counter == 1 :
         x = int(input("Its CROSS's turn. Enter x value to place piece : "))

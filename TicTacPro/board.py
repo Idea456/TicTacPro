@@ -1,4 +1,5 @@
 from p5 import *
+import random
 
 class Board() :
     def __init__(self,x,y) :
@@ -42,9 +43,21 @@ class Board() :
 class Check() :
     def __init__(self) :
         self.counter = 0
+        self.x = 0
+        self.y = 0
 
     def update(self,num) :
         self.counter = num
+
+    def botMode(self,board,piece_array,piece_object,piece) :
+        self.x = abs(random.randint(0,9))
+        self.y = abs(random.randint(0,9))
+        if piece == "cross" :
+            board[self.y][self.x].cross = True
+        piece_array.append([self.y,self.x])
+        piece_object.append(board[self.y][self.x])
+
+
 
     #check if there is a winning move
     #the question is :
