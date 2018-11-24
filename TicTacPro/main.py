@@ -16,7 +16,7 @@ column = 0
 
 #check is used to check status of each player's turn
 #it is also used to check how many pieces are in the board
-check = new Check()
+check = Check()
 
 #declare values for x and y
 x = 0
