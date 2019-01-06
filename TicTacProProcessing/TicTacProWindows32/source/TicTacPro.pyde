@@ -122,6 +122,10 @@ class Check() :
                 self.message = "Reverse successful!\nEnter team 1 (Circle) row and column"
             else:
                 self.message = "Reverse successful!\nEnter team 2 (Cross) row and column"
+        elif mode == "sequenceRowReverse":
+            self.message = "Error in reversing row!\nRow contains a sequence!"
+        elif mode == "sequenceColumnReverse":
+            self.message = "Error in reversing column!\nColumn contains a sequence!"
         
     def showInterface(self,board) :
         image(imgTitle,450,10)
@@ -272,12 +276,23 @@ def reverseRowColumn(show_board,row,column):
     for i in range(len(board)):
         for j in range(len(board[i])):
             if show_board[i][j] == "E":
+                board[i][j].r = 200
+                board[i][j].g = 200
+                board[i][j].b = 200
                 board[i][j].circle = False
                 board[i][j].cross = False
             elif show_board[i][j] == "X":
+                if board[i][j].sequence == True:
+                    board[i][j].r = 150
+                    board[i][j].g = 150
+                    board[i][j].b = 150
                 board[i][j].circle = False
                 board[i][j].cross = True
             elif show_board[i][j] == "O":
+                if board[i][j].sequence == True:
+                    board[i][j].r = 150
+                    board[i][j].g = 150
+                    board[i][j].b = 150
                 board[i][j].circle = True
                 board[i][j].cross = False
     
@@ -349,32 +364,47 @@ def checkSequence(board,array,player):
                         check.sequenceFound(board,leftDiagonalArray,player,"Diagonal")
     
 def mousePressed():
+    sequence = False
     if(check.buttonContains(mouseX,mouseY) and superpower.reverseMode == True):
         x = cp5.getController("inputRow").getText()
         y = cp5.getController("inputColumn").getText()
         x,y = str(x),str(y)
         if (x.isdigit() and y == ""):
             x = int(x)
-            reverseRowColumn(show_board,x,"")
-            check.mode = "reverseSuccessful"
-            if check.counter == 0:
-                check.circleSPUsed += 1
-                check.update(1)
-            else:
-                check.crossSPUsed += 1
-                check.update(0)
-            superpower.reverseMode = False
+            for i in range(len(board)):
+                if board[x][i].sequence == True:
+                    check.mode = "sequenceRowReverse"
+                    sequence = True
+                    superpower.reverseMode = True
+                    break
+            if sequence == False:
+                reverseRowColumn(show_board,x,"")
+                check.mode = "reverseSuccessful"
+                if check.counter == 0:
+                    check.circleSPUsed += 1
+                    check.update(1)
+                else:
+                    check.crossSPUsed += 1
+                    check.update(0)
+                superpower.reverseMode = False
         elif(y.isdigit() and x == ""):
             y = int(y)
-            reverseRowColumn(show_board,"",y)
-            check.mode = "reverseSuccessful"
-            if check.counter == 0:
-                check.circleSPUsed += 1
-                check.update(1)
-            else:
-                check.crossSPUsed += 1
-                check.update(0)
-            superpower.reverseMode = False
+            for i in range(len(board)):
+                if board[i][y].sequence == True:
+                    check.mode = "sequenceColumnReverse"
+                    sequence = True
+                    superpower.reverseMode = True
+                    break
+            if sequence == False:
+                reverseRowColumn(show_board,"",y)
+                check.mode = "reverseSuccessful"
+                if check.counter == 0:
+                    check.circleSPUsed += 1
+                    check.update(1)
+                else:
+                    check.crossSPUsed += 1
+                    check.update(0)
+                superpower.reverseMode = False
         else:
             check.mode = "errorReverseInput"
             superpower.reverseMode = True
