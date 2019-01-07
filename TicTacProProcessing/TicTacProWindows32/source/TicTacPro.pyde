@@ -513,7 +513,8 @@ def mousePressed():
 #---------------------------------MAIN CODE-------------------------------------
 def setup():
     global cp5,imgCircle,imgCross,imgTitle,inputRow,inputColumn,font2,imgButton,imgMenu,superpower,imgReverse,imgCredits,imgPosition
-    font2 = createFont("Type-Writer",20)
+    #font2 = createFont("Type-Writer",20)
+    font2 = createFont("type_writer.ttf",18)
     cp5 = ControlP5(this)
     superpower = Superpower()
     cp5.addTextfield("inputRow").setPosition(800,690).setSize(100,40).setFont(font2).setColorBackground(0x00ffff).setAutoClear(True)
