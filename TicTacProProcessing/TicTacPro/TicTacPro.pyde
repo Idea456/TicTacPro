@@ -51,6 +51,7 @@ class Check() :
         self.mode = "idle"
         self.circleSPUsed = 0
         self.crossSPUsed = 0
+        self.sequencesFound = []
 
     def checkSPUsed(self,counter):
         if counter == 0:
@@ -70,17 +71,25 @@ class Check() :
         self.yCross = y
     
     def sequenceFound(self,board,sequence,player,sequenceType):
+        print(self.circleScore,self.crossScore)
         for i in range(len(sequence)):
             board[sequence[i][0]][sequence[i][1]].r = 150
             board[sequence[i][0]][sequence[i][1]].g = 150
             board[sequence[i][0]][sequence[i][1]].b = 150
             board[sequence[i][0]][sequence[i][1]].sequence = True
-        if player == "O":
-            self.circleS += 1
-            self.circleScore = "Team 1 (Circle) has %d score " %self.circleS
-        else:
-            self.crossS += 1
-            self.circleScore = "Team 2 (Cross) has %d score " %self.crossS
+            if player == "O":
+                if self.circleS == 1:
+                    self.circleScore = "Team 1 (Circle) has 1 score "
+                elif self.circleS >= 5 and self.circleS < 10:
+                    self.circleScore = "Team 1 (Circle) has 2 score "
+            elif player == "X":
+                if self.crossS == 1:
+                    self.crossScore = "Team 2 (Cross) has 1 score "
+                elif self.crossS >= 5 and self.crossS < 10:
+                    self.crossScore = "Team 2 (Cross) has 2 score "
+                
+        print("circle : ",self.circleS,"cross : ",self.crossS)
+    
     
     def buttonContains(self,x,y) :
         return ((x >= 1153 and x <= 1300) and (y >= 685 and y <= 732))
@@ -102,9 +111,9 @@ class Check() :
                 self.message = "Team 2 (Cross) turn\nEnter row and column"
         elif mode == "superpowerPosition":
             if counter == 0:
-                self.message = "Enter row OR column value\nto change position of cross"
+                self.message = "Enter row AND column value\nto change position of cross"
             else:
-                self.message = "Enter row OR column value\nto change position of circle"
+                self.message = "Enter row AND column value\nto change position of circle"
         elif mode == "superpowerNoPosition":
             self.message = "No position to change!"
         elif mode == "SPUsed":
@@ -326,6 +335,10 @@ def checkSequence(board,array,player):
                     else:
                         verticalArray.append([i,j])
                     if vertical == 4:
+                        if player == "O":
+                            check.circleS += 1
+                        else:
+                            check.crossS += 1
                         verticalArray.append([i+1,j])
                         check.sequenceFound(board,verticalArray,player,"Vertical")
                         vertical = 0
@@ -337,7 +350,13 @@ def checkSequence(board,array,player):
                     else:
                         horizontalArray.append([i,j])
                     if horizontal == 4:
+                        print(horizontalArray)
+                        if player == "O":
+                            check.circleS += 1
+                        else:
+                            check.crossS += 1
                         horizontalArray.append([i,j+1])
+                        check.sequencesFound += horizontalArray
                         check.sequenceFound(board,horizontalArray,player,"Horizontal")
                         horizontal = 0
                 if array[i+1][j+1] == player:
@@ -348,6 +367,10 @@ def checkSequence(board,array,player):
                     else:
                         rightDiagonalArray.append([i,j])
                     if rightDiagonal == 4:
+                        if player == "O":
+                            check.circleS += 1
+                        else:
+                            check.crossS += 1
                         rightDiagonalArray.append([i+1,j+1])
                         check.sequenceFound(board,rightDiagonalArray,player,"Diagonal")
                 if array[i+1][j-1] == player:
@@ -358,7 +381,11 @@ def checkSequence(board,array,player):
                     else:
                         leftDiagonalArray.append([i,j])
                     print(leftDiagonal,leftDiagonalArray)
-                    if leftDiagonal == 3:
+                    if leftDiagonal == 4:
+                        if player == "O":
+                            check.circleS += 1
+                        else:
+                            check.crossS += 1
                         leftDiagonalArray.append([i+1,j-1])    
                         leftDiagonalArray.append([i-3,j+3])
                         check.sequenceFound(board,leftDiagonalArray,player,"Diagonal")
