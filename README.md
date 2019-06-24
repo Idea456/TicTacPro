@@ -1,3 +1,5 @@
+![title2](https://user-images.githubusercontent.com/25546711/60030182-1cfc2d80-96d5-11e9-9952-293f39247860.png)
+
 # Tic Tac Pro
 Tic Tac Pro is a game involving a 10 x 10 grid (list of lists) which has the same goal as regular tic-tac-toe, that is to connect a sequence of crosses or circles in either a column, row or diagonal. 
 
