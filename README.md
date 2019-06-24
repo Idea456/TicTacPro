@@ -20,5 +20,7 @@ python version 3.7
 processing.py
 ```
 
+## Credits
+This program was developed using the Processing library and was created during a team project assignment of FIT1045 unit in Monash University Malaysia. 
 
 
