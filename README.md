@@ -22,7 +22,7 @@ processing.py
 
 ## Learning outcome
 From this project, I learned the following :
-* using Javascript with p5.js to build UI interface
+* using Python with p5.js extension for Python to build UI interface
 * created vector illustrations using Adobe Illustrator 
 
 
