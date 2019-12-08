@@ -20,7 +20,9 @@ python version 3.7
 processing.py
 ```
 
-## Credits
-This program was developed using the Processing library and was created during a team project assignment of FIT1045 unit in Monash University Malaysia. 
+## Learning outcome
+From this project, I learned the following :
+* using Javascript with p5.js to build UI interface
+* created vector illustrations using Adobe Illustrator 
 
 
