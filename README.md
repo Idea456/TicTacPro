@@ -29,4 +29,7 @@ From this project, I learned the following :
 * using Python with p5.js extension for Python to build UI interface
 * created vector illustrations using Adobe Illustrator 
 
+## Credits
+This game was created by my team Daring Dragonfly during our FIT1045 group project at Monash University
+
 
