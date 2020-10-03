@@ -13,6 +13,10 @@ The goal is to achieve a winning move by placing 5 pieces adjacent to each other
 ## Learning outcomes
 From this game, players are able to learn how 2D arrays are implemented within Python and how it is useful to represent a tabular structure such as a Tic Tac Toe game.
 
+## Screenshots
+![Screenshot 2020-10-03 at 1 17 04 PM](https://user-images.githubusercontent.com/25546711/94984078-d7d2d680-057a-11eb-9d13-2509223c1d92.png)
+
+
 ## Requirements
 The following libraries are required for the game to run in command line or terminal depending on the operating system :
 ```
